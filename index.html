@@ -624,21 +624,19 @@
 
     <section class="container" style="margin-bottom: 40px;">
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fa-solid fa-crosshairs"></i></div>
-                <h3>Precise Buy/Sell Entry</h3>
-                <p>Acquire rigorous mathematical entries, target parameters, and defensive stop layers tailored dynamically for Australia's changing economic climate.</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fa-solid fa-user-shield"></i></div>
-                <h3>1-on-1 Strategist Access</h3>
-                <p>Erase rigid automated standard answers. Connect straight with an allocated veteran analyst to stress-test exposures inside your equity holdings.</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Instant Phone Delivery</h3>
-                <p>Never wait for late research updates. High-velocity trading indicators push actionable momentum information straight into your WhatsApp messenger tool.</p>
-            </div>
+            <div class="stat-icon"><i class="fa-solid fa-crosshairs"></i></div>
+            <h3>Precise Buy/Sell Entry</h3>
+            <p>Acquire rigorous mathematical entries, target parameters, and defensive stop layers tailored dynamically for Australia's changing economic climate.</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <h3>1-on-1 Strategist Access</h3>
+            <p>Erase rigid automated standard answers. Connect straight with an allocated veteran analyst to stress-test exposures inside your equity holdings.</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Instant Phone Delivery</h3>
+            <p>Never wait for late research updates. High-velocity trading indicators push actionable momentum information straight into your WhatsApp messenger tool.</p>
         </div>
     </section>
 
@@ -733,12 +731,12 @@
             switchLightChart(symbol, tabElement);
         }
 
-        // ==========================================
-        // 2. 升级版：全站多客服随机均分 + 24小时去重记忆锁 + 深度事件追踪
-        // ==========================================
+        // ============================================================
+        // 2. FB 广告环境专用优化版：多客服分流 + 本地记忆锁 + 强力唤醒 App (终极全兼容版)
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             // 批量获取明亮版网页中全站所有的 WhatsApp 触发点击源
-            const waButtons = document.querySelectorAll('.btn-premium-wa, .btn-float');
+            const waButtons = document.querySelectorAll('.btn-premium-wa, .btn-float, .btn-whatsapp');
 
             waButtons.forEach(function(button) {
                 button.addEventListener('click', function(e) {
@@ -748,9 +746,9 @@
                     // 2. 【客服号码池配置】(已全面更换为澳大利亚国家代码 61 及专业股民对话文本)
                     // 上线投放前，请务必把下方的 61400000001 等虚拟号码修改为你真实的承接 WhatsApp 号码！
                     const whatsappPool = [
-                        { phone: "61400000001", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, // 承接客服 A
-                        { phone: "61400000002", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, // 承接客服 B
-                        { phone: "61400000003", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }  // 承接客服 C
+                        { phone: "61400000001", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, 
+                        { phone: "61400000002", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, 
+                        { phone: "61400000003", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }  
                     ];
 
                     // 3. 【时效配置】设置记忆锁定时间为 24 小时 (单位: 毫秒)
@@ -765,7 +763,6 @@
                     if (cachedShuntData) {
                         try {
                             const parsedData = JSON.parse(cachedShuntData);
-                            // 检查上一次点击的客服，若在24小时内，锁死继续分配给同一个人，拒绝互相撞单
                             if (now - parsedData.timestamp < LOCK_DURATION) {
                                 selectedTarget = parsedData.target;
                             }
@@ -774,7 +771,7 @@
                         }
                     }
 
-                    // 5. 若是首次首访，或者本地记忆已过期，通过随机权重重新实行大盘均分
+                    // 5. 若是首次首访，或者本地记忆已过期，通过随机算法重新实行大盘均分
                     if (!selectedTarget) {
                         const randomIndex = Math.floor(Math.random() * whatsappPool.length);
                         selectedTarget = whatsappPool[randomIndex];
@@ -786,40 +783,36 @@
                         localStorage.setItem('wa_assigned_client', JSON.stringify(cachePayload));
                     }
 
-                    // 6. 准备最终跳转的参数序列
                     const targetPhone = selectedTarget.phone;
                     const encodedText = encodeURIComponent(selectedTarget.text);
 
-                    // 7. 设备硬件精准识别
-                    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    // 6. 设备环境与是否在 Facebook 内置浏览器中打开的精准识别
+                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                    const isFacebook = (userAgent.indexOf("FBAN") > -1) || (userAgent.indexOf("FBAV") > -1);
+                    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
                     
+                    // 7. 针对 Facebook 广告内置浏览器的链接协议路由切换
                     let finalUrl = "";
-                    if (isMobile) {
-                        // 手机移动端：深层链接直接全自动唤醒原生 WhatsApp 客户端 App 聊天框
-                        finalUrl = `whatsapp://send?phone=${targetPhone}&text=${encodedText}`;
+                    if (isFacebook || isMobile) {
+                        finalUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedText}`;
                     } else {
-                        // PC 电脑端：调用标准官方重定向网页网关打开网页版
                         finalUrl = `https://wa.me/${targetPhone}?text=${encodedText}`;
                     }
 
-                    // 8. 触发 Meta 像素，回传 Contact（联系）事件以及高价值自定义漏斗数据
+                    // 8. 触发 Meta 像素，精确回传 Contact 联系事件及深度自定义参数
                     if (typeof fbq === 'function') {
                         fbq('track', 'Contact', {
                             assigned_whatsapp: targetPhone,
-                            user_device: isMobile ? 'Mobile' : 'PC',
+                            user_device: isMobile ? (isFacebook ? 'Facebook_IAB' : 'Mobile_Standard') : 'PC',
                             is_cached_user: cachedShuntData ? 'Yes' : 'No'
                         });
                     } else {
                         console.warn('Meta Pixel 状态异常，事件暂存浏览器日志');
                     }
 
-                    // 9. 延迟 250ms 跳转，确保网络请求发出，百分百防 Meta 后台漏报
+                    // 9. 【核心改进点】无论 PC 还是移动端，全量强制使用 location.href 跳转
                     setTimeout(function() {
-                        if (isMobile) {
-                            window.location.href = finalUrl;
-                        } else {
-                            window.open(finalUrl, '_blank');
-                        }
+                        window.location.href = finalUrl;
                     }, 250); 
                 });
             });
