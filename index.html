@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha ASX Premium Network | Direct Institutional Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS 样式变量 - 全面适配 Grand Markets 明亮、高雅的皇家深蓝+信任金风格 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --primary-navy: #0f172a;
+            --brand-blue: #1d4ed8;
+            --brand-blue-hover: #1e40af;
+            --whatsapp-green: #22c55e;
+            --whatsapp-hover: #16a34a;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --container-width: 1200px;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 强引流核心：高转化率突显的 WhatsApp 点击按钮（绿色，长阴影） */
+        .btn-premium-wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--whatsapp-green);
+            color: #ffffff;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .btn-premium-wa:hover {
+            background-color: var(--whatsapp-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.45);
+        }
+
+        .btn-premium-wa i {
+            margin-right: 12px;
+            font-size: 24px;
+        }
+
+        /* 顶部导航栏，半透明高斯模糊，尽显高级 */
+        header {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo span {
+            color: var(--brand-blue);
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #eff6ff;
+            color: var(--brand-blue);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* 结构改造：首屏非对称分割，彻底移除测验栏，按钮一步到位 */
+        .hero-split {
+            background-color: #ffffff;
+            padding: 50px 0 70px 0;
+            border-bottom: 1px solid var(--border-light);
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 46px;
+            color: var(--primary-navy);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-left h1 em {
+            font-style: normal;
+            color: var(--brand-blue);
+            border-bottom: 3px solid #bfdbfe;
+        }
+
+        .hero-left p {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 620px;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+
+        .bullet-list li {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bullet-list li i {
+            color: var(--whatsapp-green);
+            font-size: 18px;
+        }
+
+        /* 仿真 WhatsApp 手机聊天沙盒，给予用户明确的互动心理预期 */
+        .chat-sandbox {
+            background-color: #efeae2;
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+            overflow: hidden;
+        }
+
+        .chat-topbar {
+            background-color: #075e54;
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-panel {
+            width: 40px;
+            height: 40px;
+            background-color: #128c7e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .chat-status h4 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .chat-status p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .chat-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 14px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .msg-received {
+            background-color: #ffffff;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .msg-premium-alert {
+            background-color: #e1ffc7;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+            border-left: 4px solid var(--whatsapp-green);
+        }
+
+        .msg-time {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* 核心升级：实时 K 线图动态区域样式 */
+        .chart-section {
+            padding: 60px 0;
+        }
+
+        .chart-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+
+        .chart-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chart-tab {
+            background-color: var(--bg-main);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .chart-tab.active, .chart-tab:hover {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            border-color: var(--brand-blue);
+        }
+
+        .chart-wrapper {
+            height: 520px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* 专业核心实力展现网格（建立信任度） */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 20px 0 60px 0;
+        }
+
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            color: var(--brand-blue);
+            margin-bottom: 16px;
+        }
+
+        .stat-card h3 {
+            font-size: 18px;
+            color: var(--primary-navy);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* 纯白质感好评反馈背书区 */
+        .testimonials-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-light);
+            padding: 35px;
+            border-radius: 16px;
+        }
+
+        .stars {
+            color: #eab308;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .reviewer-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 44px;
+            height: 44px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        .reviewer-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        .reviewer-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* 常驻右下角随动弹跳小按钮 */
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .btn-float {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--whatsapp-green);
+            color: #ffffff;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            font-size: 32px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .btn-float:hover {
+            background-color: var(--whatsapp-hover);
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ASIC 严格澳洲合规法律条款免责尾部 */
+        footer {
+            background-color: var(--primary-navy);
+            color: #94a3b8;
+            padding: 60px 0 30px 0;
+            font-size: 13px;
+        }
+
+        .disclaimer-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 24px;
+            border-radius: 12px;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding-top: 20px;
+        }
+
+        /* 精准媒体查询：全面覆盖各类智能手机与 PC 终端 */
+        @media (max-width: 992px) {
+            .hero-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-left {
+                text-align: center;
+            }
+            .bullet-list li {
+                justify-content: center;
+            }
+            .hero-left h1 {
+                font-size: 36px;
+            }
+            .chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .chart-tabs {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+            .btn-premium-wa {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-wrapper {
+                height: 420px;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '4382273508695278');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4382273508695278&ev=PageView&noscript=1"/>
+    </noscript>
+    </head>
+<body>
+
+    <header>
+        <div class="container header-layout">
+            <div class="brand-logo">
+                <i class="fa-solid fa-shield-halved" style="color: var(--brand-blue);"></i> AUS<span>Alpha</span> Network
+            </div>
+            <div class="verified-badge">
+                <i class="fa-solid fa-circle-check"></i> Verified Institutional Channel
+            </div>
+        </div>
+    </header>
+
+    <div style="background-color: #ffffff; border-bottom: 1px solid var(--border-light);">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+            "symbols": [
+                { "proName": "ASX:XJO", "title": "ASX 200 Index" },
+                { "proName": "ASX:BHP", "title": "BHP Group" },
+                { "proName": "ASX:CBA", "title": "Commonwealth Bank" },
+                { "proName": "ASX:CSL", "title": "CSL Limited" },
+                { "proName": "ASX:MQG", "title": "Macquarie Group" }
+            ],
+            "showSymbolLogo": true,
+            "colorTheme": "light",
+            "isTransparent": true,
+            "displayMode": "adaptive",
+            "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
+    <section class="hero-split">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1>Unlock Private <em>ASX Stock Recommendations</em> on Your WhatsApp</h1>
+                <p>Stop trailing retail volatility. Bridge the gap with asymmetric market positioning and institutional alpha analysis delivered 1-on-1 daily without friction.</p>
+                
+                <ul class="bullet-list">
+                    <li><i class="fa-solid fa-check"></i> Personalized portfolio health reviews with real veterans.</li>
+                    <li><i class="fa-solid fa-check"></i> High-conviction Australian mining, energy & small-cap picks.</li>
+                    <li><i class="fa-solid fa-check"></i> Risk allocation modeling customized to your individual net worth.</li>
+                </ul>
+
+                <a href="#" target="_blank" class="btn-premium-wa">
+                    <i class="fa-brands fa-whatsapp"></i> Get Free 1-on-1 Advice Now
+                </a>
+            </div>
+
+            <div class="chat-sandbox">
+                <div class="chat-topbar">
+                    <div class="avatar-panel"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="chat-status">
+                        <h4>AUS Alpha Senior Strategist</h4>
+                        <p>Online • Active Insights Provided</p>
+                    </div>
+                </div>
+                <div class="chat-body">
+                    <div class="msg-bubble msg-received">
+                        Good morning. We just finalized the Q3 fundamental screening for ASX resource allocation.
+                        <span class="msg-time">09:15 AM</span>
+                    </div>
+                    <div class="msg-bubble msg-premium-alert">
+                        <strong>[VIP ALERT]</strong> ASX:BHP Entry Range established between A$43.80 - A$44.10. Target exit set at A$49.50. Risk mitigation trailing stop-loss fixed strictly at A$41.20.
+                        <span class="msg-time">09:17 AM</span>
+                    </div>
+                    <div class="msg-bubble msg-received">
+                        Any members holding overweight positions in banking equities please text me directly for allocation adjustment.
+                        <span class="msg-time">09:20 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container chart-section">
+        <div class="chart-box">
+            <div class="chart-header">
+                <div class="chart-title">
+                    <i class="fa-solid fa-chart-candlestick" style="color: var(--brand-blue);"></i> Live Premium Market Terminal (Real-Time K-Line)
+                </div>
+                <div class="chart-tabs">
+                    <div class="chart-tab active" onclick="switchLightChart('ASX:XJO', this)">S&P/ASX 200 Index</div>
+                    <div class="chart-tab" onclick="switchLightChart('ASX:BHP', this)">BHP Group</div>
+                    <div class="chart-tab" onclick="switchLightChart('ASX:CBA', this)">Commonwealth Bank</div>
+                    <div class="chart-tab" onclick="switchLightChart('ASX:MQG', this)">Macquarie Group</div>
+                </div>
+            </div>
+            
+            <div class="chart-wrapper">
+                <div id="asx_light_live_chart" style="height: 100%; width: 100%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 40px;">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                <h3>Precise Buy/Sell Entry</h3>
+                <p>Acquire rigorous mathematical entries, target parameters, and defensive stop layers tailored dynamically for Australia's changing economic climate.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-user-shield"></i></div>
+                <h3>1-on-1 Strategist Access</h3>
+                <p>Erase rigid automated standard answers. Connect straight with an allocated veteran analyst to stress-test exposures inside your equity holdings.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Instant Phone Delivery</h3>
+                <p>Never wait for late research updates. High-velocity trading indicators push actionable momentum information straight into your WhatsApp messenger tool.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 32px; color: var(--primary-navy); font-weight: 700;">Success Stories from Aussie Network Members</h2>
+            <div class="testimonials-grid">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="review-text">"The real-time insights on energy and mining sector stocks completely transformed my trading strategy. Having direct WhatsApp contact means I can clarify trade logic anytime."</div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar">DM</div>
+                        <div class="reviewer-info">
+                            <h4>David M.</h4>
+                            <p>Sydney, NSW</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="review-text">"As a busy professional, I don't have hours to scan the ASX charts. The precise WhatsApp breakout alerts are incredibly convenient and highly actionable."</div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar">ST</div>
+                        <div class="reviewer-info">
+                            <h4>Sarah T.</h4>
+                            <p>Melbourne, VIC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" target="_blank" class="btn-premium-wa">
+                    <i class="fa-brands fa-whatsapp"></i> Claim Your Free Allocation Spot
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-cta">
+        <a href="#" target="_blank" class="btn-float" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="disclaimer-box">
+                <strong>ASIC Regulatory General Advice Warning:</strong> The analysis, materials, and digital data published across this network platform are distributed strictly as general informational advisory insights. No material considers or aligns with the individual financial objectives, net-worth structures, tax metrics, budgeting conditions, or specific long-term security requirements of any individual visitor. You are strongly advised to evaluate the inherent suitability of any shared alert or data relative to your unique asset framework prior to execution. Trading equities and derivatives contains systematic risk factors including the total loss of principal investment wealth. Past performance matrices are mathematical representations and do not guarantee future performance.
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alpha ASX Network Trust Private Wealth Asset Advisors. All Rights Reserved. Devoted exclusively to Australian resident compliance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        // ==========================================
+        // 1. TradingView K线图异步控制引擎 (明亮版风格)
+        // ==========================================
+        function loadLightChart(symbol) {
+            new TradingView.widget({
+                "width": "100%",
+                "height": "100%",
+                "symbol": symbol,
+                "interval": "D",
+                "timezone": "Australia/Sydney",
+                "theme": "light", 
+                "style": "1", 
+                "locale": "en",
+                "toolbar_bg": "#f1f5f9",
+                "enable_publishing": false,
+                "hide_top_toolbar": false,
+                "hide_legend": false,
+                "save_image": false,
+                "container_id": "asx_light_live_chart"
+            });
+        }
+
+        function switchLightChart(symbol, tabElement) {
+            const tabs = document.querySelectorAll('.chart-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            tabElement && tabElement.classList.add('active');
+            loadLightChart(symbol);
+        }
+        
+        function switchChart(symbol, tabElement) {
+            switchLightChart(symbol, tabElement);
+        }
+
+        // ==========================================
+        // 2. 升级版：全站多客服随机均分 + 24小时去重记忆锁 + 深度事件追踪
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // 批量获取明亮版网页中全站所有的 WhatsApp 触发点击源
+            const waButtons = document.querySelectorAll('.btn-premium-wa, .btn-float');
+
+            waButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    // 1. 阻止默认跳转，为 Meta 像素异步发送留出时间
+                    e.preventDefault(); 
+
+                    // 2. 【客服号码池配置】(已全面更换为澳大利亚国家代码 61 及专业股民对话文本)
+                    // 上线投放前，请务必把下方的 61400000001 等虚拟号码修改为你真实的承接 WhatsApp 号码！
+                    const whatsappPool = [
+                        { phone: "61400000001", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, // 承接客服 A
+                        { phone: "61400000002", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }, // 承接客服 B
+                        { phone: "61400000003", text: "Hi! I am interested in joining AUS Alpha Network to receive free ASX analysis and 1-on-1 guidance." }  // 承接客服 C
+                    ];
+
+                    // 3. 【时效配置】设置记忆锁定时间为 24 小时 (单位: 毫秒)
+                    const LOCK_DURATION = 24 * 60 * 60 * 1000; 
+
+                    const now = new Date().getTime();
+                    let selectedTarget = null;
+
+                    // 4. 核心时效与记忆检查逻辑
+                    const cachedShuntData = localStorage.getItem('wa_assigned_client');
+                    
+                    if (cachedShuntData) {
+                        try {
+                            const parsedData = JSON.parse(cachedShuntData);
+                            // 检查上一次点击的客服，若在24小时内，锁死继续分配给同一个人，拒绝互相撞单
+                            if (now - parsedData.timestamp < LOCK_DURATION) {
+                                selectedTarget = parsedData.target;
+                            }
+                        } catch (err) {
+                            localStorage.removeItem('wa_assigned_client');
+                        }
+                    }
+
+                    // 5. 若是首次首访，或者本地记忆已过期，通过随机权重重新实行大盘均分
+                    if (!selectedTarget) {
+                        const randomIndex = Math.floor(Math.random() * whatsappPool.length);
+                        selectedTarget = whatsappPool[randomIndex];
+                        
+                        const cachePayload = {
+                            target: selectedTarget,
+                            timestamp: now
+                        };
+                        localStorage.setItem('wa_assigned_client', JSON.stringify(cachePayload));
+                    }
+
+                    // 6. 准备最终跳转的参数序列
+                    const targetPhone = selectedTarget.phone;
+                    const encodedText = encodeURIComponent(selectedTarget.text);
+
+                    // 7. 设备硬件精准识别
+                    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    let finalUrl = "";
+                    if (isMobile) {
+                        // 手机移动端：深层链接直接全自动唤醒原生 WhatsApp 客户端 App 聊天框
+                        finalUrl = `whatsapp://send?phone=${targetPhone}&text=${encodedText}`;
+                    } else {
+                        // PC 电脑端：调用标准官方重定向网页网关打开网页版
+                        finalUrl = `https://wa.me/${targetPhone}?text=${encodedText}`;
+                    }
+
+                    // 8. 触发 Meta 像素，回传 Contact（联系）事件以及高价值自定义漏斗数据
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Contact', {
+                            assigned_whatsapp: targetPhone,
+                            user_device: isMobile ? 'Mobile' : 'PC',
+                            is_cached_user: cachedShuntData ? 'Yes' : 'No'
+                        });
+                    } else {
+                        console.warn('Meta Pixel 状态异常，事件暂存浏览器日志');
+                    }
+
+                    // 9. 延迟 250ms 跳转，确保网络请求发出，百分百防 Meta 后台漏报
+                    setTimeout(function() {
+                        if (isMobile) {
+                            window.location.href = finalUrl;
+                        } else {
+                            window.open(finalUrl, '_blank');
+                        }
+                    }, 250); 
+                });
+            });
+        });
+
+        // 页面初始化加载流
+        window.onload = function() {
+            loadLightChart('ASX:XJO'); // 前置载入澳大利亚大盘标普200实时走势
+        };
+    </script>
+</body>
+</html>
